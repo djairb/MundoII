@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SeuPerfilActivity">
+
+
+    <TextView
+        android:id="@+id/seuPerfilNomeId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif-black"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/seuPerfilIdid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/seuPerfilIdid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="135dp"
+        android:layout_marginEnd="133dp"
+        android:layout_marginBottom="30dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/seuPerfilTelefoneID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/seuPerfilSenhaId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="134dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seuPerfilTelefoneID" />
+
+    <TextView
+        android:id="@+id/seuPerfilTelefoneID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="133dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seuPerfilIdid" />
+
+    <Button
+        android:id="@+id/botaoEditarId"
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="151dp"
+        android:text="editar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seuPerfilSenhaId" />
+
+    <Button
+        android:id="@+id/botaoDeletarId"
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="141dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="deletar"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botaoEditarId" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
