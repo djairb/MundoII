@@ -10,56 +10,61 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-public class CadastroAlunoActivity extends AppCompatActivity implements Serializable {
+public class CadastroProfissionalActivity extends AppCompatActivity implements Serializable {
 
     private EditText nome;
     private EditText cpf;
     private EditText telefone;
+    private EditText funcao;
     private EditText senhaRegistro;
     private EditText confirmarSenha;
     private Button salvar;
-    private AlunoDAO dao;
+    private ProfissionalDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_aluno);
+        setContentView(R.layout.activity_cadastro_profissional);
 
         nome = findViewById(R.id.editNomeCampo);
         cpf = findViewById(R.id.editCpfCampo);
         telefone = findViewById(R.id.editTelefoneCampo);
+        funcao = findViewById(R.id.editFuncao);
         salvar = findViewById(R.id.botaoSalvar);
-        senhaRegistro = findViewById(R.id.editFuncao);
-        confirmarSenha = findViewById(R.id.editSenhaCampo);
-        dao = new AlunoDAO(this);
+        senhaRegistro = findViewById(R.id.editSenhaCampo);
+        confirmarSenha = findViewById(R.id.editConfirmaSenhaCampo);
+        dao = new ProfissionalDAO(this);
 
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //dao.acabarTudo();
                 if(validarCampos()){
-                    montarAluno();
+                    montarProfissional();
 
                 }
 
             }
         });
 
+
     }
-    public void montarAluno(){
-        Aluno aluno = new Aluno();
-        aluno.setCpf(cpf.getText().toString());
-        aluno.setNome(nome.getText().toString());
-        aluno.setTelefone(telefone.getText().toString());
-        aluno.setSenha(senhaRegistro.getText().toString());
+
+    public void montarProfissional(){
+        Profissional profissional = new Profissional();
+        profissional.setCpf(cpf.getText().toString());
+        profissional.setNome(nome.getText().toString());
+        profissional.setTelefone(telefone.getText().toString());
+        profissional.setSenha(senhaRegistro.getText().toString());
+        profissional.setFuncao(funcao.getText().toString());
         ///adicionar criptografia
-        if(dao.existeCpf(aluno.getCpf())){
+        if(dao.existeCpf(profissional.getCpf())){
             Toast.makeText(this, "Cpf informado já cadastrado.", Toast.LENGTH_LONG).show();
 
         }else{
-            Long id = dao.inserir(aluno);
-            Toast.makeText(this, "Aluno inserido com id: ." + id, Toast.LENGTH_LONG).show();
-            CadastroAlunoActivity.this.finish();
+            Long id = dao.inserir(profissional);
+            Toast.makeText(this, "Profissional inserido com id: ." + id, Toast.LENGTH_LONG).show();
+            CadastroProfissionalActivity.this.finish();
 
         }
 
@@ -153,10 +158,5 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         }
         return erro;
 
-
-
-
-
     }
-
 }

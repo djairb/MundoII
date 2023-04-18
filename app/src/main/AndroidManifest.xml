@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Androidcrudsqlite"
         tools:targetApi="31">
         <activity
+            android:name=".ListaServicosActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CadastroProfissionalActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditarPerfilActivity"
             android:exported="false">
             <meta-data

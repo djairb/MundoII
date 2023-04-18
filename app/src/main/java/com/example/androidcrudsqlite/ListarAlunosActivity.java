@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,16 @@ public class ListarAlunosActivity extends AppCompatActivity {
 
     private List<Aluno> alunosTodos;
     private List<Aluno> alunosOutros = new ArrayList<>();
+    private List<Ofertado> listaOfertados = new ArrayList<>();
+    private Ofertado ofertado;
     private String cpf;
     private String cpfThis;
     private AlunoDAO alunoDAO;
     private Aluno aluno;
     private ListView listaAlunos;
     private TextView alunoNome;
+
+    //essa activity lista os servicos que o aluno pode clicar e ir pra tela geral pra escrever o q ta rolando e o tempo e ja era
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +45,15 @@ public class ListarAlunosActivity extends AppCompatActivity {
         alunoDAO = new AlunoDAO(this);
         aluno = alunoDAO.retornaAluno(cpfThis);
         alunoNome.setText("Bem-vindo(a) ao sistema, " + aluno.getNome());
-        encherLista();
+        //encherLista();
+        encherListaOfertado();
 
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Aluno alunoIr = alunosOutros.get(position);
-                irPraOutroPerfil(alunoIr.getCpf());
+                Ofertado ofertado = listaOfertados.get(position);
+                Toast.makeText(ListarAlunosActivity.this, "Serviço solicitado = "+ofertado.getNome(), Toast.LENGTH_LONG).show();
+                //irPraOutroPerfil(alunoIr.getCpf());
 
             }
         });
@@ -64,6 +71,34 @@ public class ListarAlunosActivity extends AppCompatActivity {
             }
         }
         ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunosOutros);
+        listaAlunos.setAdapter(adapter);
+
+    };
+
+    public void encherListaOfertado(){
+
+        ofertado = new Ofertado();
+        ofertado.setId(1);
+        ofertado.setNome("Desenvolvimento Seguro");
+        listaOfertados.add(ofertado);
+
+        ofertado = new Ofertado();
+        ofertado.setId(2);
+        ofertado.setNome("Consultoria LGPD");
+        listaOfertados.add(ofertado);
+
+        ofertado = new Ofertado();
+        ofertado.setId(1);
+        ofertado.setNome("Pentests");
+        listaOfertados.add(ofertado);
+
+        ofertado = new Ofertado();
+        ofertado.setId(1);
+        ofertado.setNome("Consultoria em Segurança");
+        listaOfertados.add(ofertado);
+
+
+        ArrayAdapter<Ofertado> adapter = new ArrayAdapter<Ofertado>(this, android.R.layout.simple_list_item_1, listaOfertados);
         listaAlunos.setAdapter(adapter);
 
     };

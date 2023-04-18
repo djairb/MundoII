@@ -14,6 +14,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText cpfLogin;
     private EditText senhaLogin;
     private Button botaoLogar;
+    private Button logarProfissional;
+    private Button cadastroProfissonal;
+    private ProfissionalDAO profissionalDAO;
     private AlunoDAO alunoDAO;
     private Button realizarCadastro;
 
@@ -26,18 +29,35 @@ public class LoginActivity extends AppCompatActivity {
         cpfLogin = findViewById(R.id.editTextLoginCpf);
         senhaLogin = findViewById(R.id.editTextLoginSenha);
         botaoLogar = findViewById(R.id.botaoLogin);
+        logarProfissional = findViewById(R.id.loginProfissional);
         realizarCadastro = findViewById(R.id.botaoEfetuarCadastro);
+        cadastroProfissonal = findViewById(R.id.botaoProfissional);
 
+
+
+        profissionalDAO = new ProfissionalDAO(this);
         alunoDAO = new AlunoDAO(this);
 
         botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(verificarLogin(cpfLogin.getText().toString(), senhaLogin.getText().toString())){
+                if(verificarLoginAluno(cpfLogin.getText().toString(), senhaLogin.getText().toString())){
                     Toast.makeText(LoginActivity.this,"Login efetuado", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(new Intent(LoginActivity.this, ListarAlunosActivity.class));
                     intent.putExtra("cpf",cpfLogin.getText().toString());
                     startActivity(intent);
+                }
+            }
+        });
+
+        logarProfissional.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(verificarLoginProfissional(cpfLogin.getText().toString(), senhaLogin.getText().toString())){
+                    Toast.makeText(LoginActivity.this,"TU É PROFISSIONAL, GRAÇAS A DEUS", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(new Intent(LoginActivity.this, ListarAlunosActivity.class));
+                   /// intent.putExtra("cpf",cpfLogin.getText().toString());
+                    ///startActivity(intent);
                 }
             }
         });
@@ -49,9 +69,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        cadastroProfissonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, CadastroProfissionalActivity.class));
+            }
+        });
+
     }
 
-    public Boolean verificarLogin(String cpf, String senha){
+    public Boolean verificarLoginProfissional(String cpf, String senha){
+        Boolean prosseguir = true;
+        if(!profissionalDAO.existeCpf(cpf)){
+            cpfLogin.setError("Cpf não consta no banco de Dados");
+            prosseguir = false;
+            return prosseguir;
+        }
+        if(!profissionalDAO.comparaSenha(cpf, senha)){
+            senhaLogin.setError("Senha informada não confere com a cadastrada.");
+            prosseguir = false;
+            return prosseguir;
+        }
+
+        return prosseguir;
+
+
+    }
+
+    public Boolean verificarLoginAluno(String cpf, String senha){
         Boolean prosseguir = true;
         if(!alunoDAO.existeCpf(cpf)){
             cpfLogin.setError("Cpf não consta no banco de Dados");
@@ -68,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 
