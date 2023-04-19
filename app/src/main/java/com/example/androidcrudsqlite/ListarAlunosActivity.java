@@ -29,6 +29,7 @@ public class ListarAlunosActivity extends AppCompatActivity {
     private Aluno aluno;
     private ListView listaAlunos;
     private TextView alunoNome;
+    private String comunicacao;
 
     //essa activity lista os servicos que o aluno pode clicar e ir pra tela geral pra escrever o q ta rolando e o tempo e ja era
 
@@ -53,6 +54,11 @@ public class ListarAlunosActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Ofertado ofertado = listaOfertados.get(position);
                 Toast.makeText(ListarAlunosActivity.this, "Serviço solicitado = "+ofertado.getNome(), Toast.LENGTH_LONG).show();
+                ///comunicacao vai levar o cpf e os dados do problema. problema vai ter cpf como chave estrangeira
+                comunicacao = cpfThis + " " + ofertado.getNome();
+                Intent intent = new Intent(new Intent(ListarAlunosActivity.this, ConteMaisActivity.class));
+                intent.putExtra("comunicacao",comunicacao);
+                startActivity(intent);
                 //irPraOutroPerfil(alunoIr.getCpf());
 
             }
