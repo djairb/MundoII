@@ -33,6 +33,7 @@ public class ProblemaDAO {
         values.put("cpfAluno", problema.getCpfAluno());
         values.put("tipo", problema.getTipo());
         values.put("textoDescricao", problema.getTextoDescricao());
+        values.put("prazo", problema.getPrazo());
         return banco.insert("problema", null, values);
 
     }

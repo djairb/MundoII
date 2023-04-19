@@ -74,8 +74,7 @@ public class ProfissionalDAO {
 
     public Profissional retornaProfissional(String cpf){
         Profissional profissional = new Profissional();
-        boolean resposta = false;
-        String where = "SELECT * FROM aluno WHERE cpf = '" + cpf + "'";
+        String where = "SELECT * FROM profissional WHERE cpf = '" + cpf + "'";
         Cursor cursor = banco.rawQuery(where, null);
         if(cursor.getCount()>0){
             cursor.moveToFirst();

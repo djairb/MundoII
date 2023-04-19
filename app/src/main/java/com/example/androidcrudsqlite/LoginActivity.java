@@ -55,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(verificarLoginProfissional(cpfLogin.getText().toString(), senhaLogin.getText().toString())){
                     Toast.makeText(LoginActivity.this,"TU É PROFISSIONAL, GRAÇAS A DEUS", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(new Intent(LoginActivity.this, ListarAlunosActivity.class));
-                   /// intent.putExtra("cpf",cpfLogin.getText().toString());
-                    ///startActivity(intent);
+                    Intent intent = new Intent(new Intent(LoginActivity.this, ListarProblemasActivity.class));
+                    intent.putExtra("cpf",cpfLogin.getText().toString());
+                    startActivity(intent);
                 }
             }
         });

@@ -31,6 +31,8 @@ public class ListarAlunosActivity extends AppCompatActivity {
     private TextView alunoNome;
     private String comunicacao;
 
+
+
     //essa activity lista os servicos que o aluno pode clicar e ir pra tela geral pra escrever o q ta rolando e o tempo e ja era
 
     @Override
